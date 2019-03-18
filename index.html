@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="info">
+        <h1>
+            If you want to play again, just refresh the page. Cheers!
+        </h1>
+    </div>
+
+
+<script>
+    console.log("hello");
+
+    const validChoices = ["rock","paper","scissor"];
+    var playerScore = 0;
+    var computerScore = 0;
+    var div = document.getElementById("info");
+    div.style.display = "none";
+
+    function computerPlay()
+    {
+        var choices = ["rock", "paper" , "scissors"];
+        
+        return choices[Math.floor(Math.random()*3)];
+    }
+
+    function playRound(playerSelection, computerSelection) {
+        if(playerSelection == "rock"){
+            if(computerSelection == "rock"){
+                console.log("Draw. Both choose Rock");
+                alert("Draw. Both choose Rock");
+                console.log("Score:\nPlayer:"+playerScore+"\nComputer:"+computerScore);
+            }else if (computerSelection == "paper"){
+                console.log("Computer Wins!. Paper beats Rock");
+                alert("Computer Wins!. Paper beats Rock");
+                computerScore+=1;
+                console.log("Score:\nPlayer:"+playerScore+"\nComputer:"+computerScore);
+            }else{
+                console.log("Player Wins!. Rock beats Scissor");
+                alert("Player Wins!. Rock beats Scissor");
+                playerScore+=1;
+                console.log("Score:\nPlayer:"+playerScore+"\nComputer:"+computerScore);
+            }
+        }else if (playerSelection == "paper"){
+            if(computerSelection == "rock"){
+                console.log("Player Wins!. Paper beats Rock");
+                alert("Player Wins!. Paper beats Rock");
+                playerScore+=1
+                console.log("Score:\nPlayer:"+playerScore+"\nComputer:"+computerScore);
+            }else if (computerSelection == "paper"){
+                console.log("Draw. Both choose Paper.");
+                alert("Draw. Both choose Paper.");
+                console.log("Score:\nPlayer:"+playerScore+"\nComputer:"+computerScore);
+            }else{
+                console.log("Computer Wins!. Scissor beats Paper.");
+                alert("Computer Wins!. Scissor beats Paper.");
+                computerScore+=1;
+                console.log("Score:\nPlayer:"+playerScore+"\nComputer:"+computerScore);
+            }
+        }else{
+            if(computerSelection == "rock"){
+                console.log("Computer Wins!. Rock beats Scissor");
+                alert("Computer Wins!. Rock beats Scissor");
+                computerScore+=1;
+                console.log("Score:\nPlayer:"+playerScore+"\nComputer:"+computerScore);
+            }else if (computerSelection == "paper"){
+                console.log("Player Wins!. Scissor beats Paper.");
+                alert("Player Wins!. Scissor beats Paper.");
+                playerScore+=1;
+                console.log("Score:\nPlayer:"+playerScore+"\nComputer:"+computerScore);
+            }else{
+                console.log("Draw!. Both choose Scissor");
+                alert("Draw!. Both choose Scissor");
+                console.log("Score:\nPlayer:"+playerScore+"\nComputer:"+computerScore);
+            }
+        }
+    }
+
+    var valid = false;
+    var playerSelection="";
+    var round = 5;
+
+    alert("Welcome! This is a 5 rounds of rock, paper, scissor with the computer. Good luck!")
+
+    for(var a=0;a<5;a++)
+    {
+        while(valid == false){
+            let sign = prompt("What do you choose [rock,paper, scissor] :");
+            if(validChoices.indexOf(sign.toLowerCase()) > -1){
+                valid = true;
+                playerSelection = sign.toLowerCase();
+                playRound(playerSelection,computerPlay());
+            }else{
+                alert("Please choose only rock,paper,or scissor");
+            }
+        }
+        valid=false;
+    }
+
+    if(playerScore==computerScore){
+        console.log("Draw! Everybody is a winner");
+        alert("Draw! Everybody is a winner");
+    }else if(playerScore > computerScore){
+        console.log("You win with the score of "+playerScore);
+        alert("You win with the score of "+playerScore);
+    }else{
+        console.log("Computer wins with the score of "+computerScore);
+        alert("Computer wins with the score of "+computerScore);
+    }
+
+    div.style.display = "block";
+
+
+
+</script>
+</body>
+</html>
